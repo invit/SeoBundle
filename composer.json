@@ -3,6 +3,10 @@
     "description": "Simplifies SEO metatags management",
     "authors": [
         {
+            "name": "Toni Rudolf",
+            "email": "toni.rudolf@weekend4two.com"
+        },
+        {
             "name": "Michael Stämpfli",
             "email": "michael.staempfli@weekend4two.com"
         }
