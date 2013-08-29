@@ -1,0 +1,19 @@
+{
+    "name": "invit/seo-bundle",
+    "description": "Simplifies SEO metatags management",
+    "authors": [
+        {
+            "name": "Michael Stämpfli",
+            "email": "michael.staempfli@weekend4two.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">= 5.3",
+    },
+    "autoload": {
+        "psr-0": {
+            "Invit\\SeoBundle\\": "src/"
+        }
+    }
+}
