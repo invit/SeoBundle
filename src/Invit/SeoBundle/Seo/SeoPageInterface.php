@@ -36,22 +36,4 @@ interface SeoPageInterface
      * @return SeoPageInterface
      */
     function setMetas(array $metas);
-
-    /**
-     * @param array $attributes
-     * @return SeoPageInterface
-     */
-    function setHtmlAttributes(array $attributes);
-
-    /**
-     * @param $name
-     * @param $value
-     * @return SeoPageInterface
-     */
-    function addHtmlAttributes($name, $value);
-
-    /**
-     * @return array
-     */
-    function getHtmlAttributes();
 }

@@ -14,22 +14,14 @@ class Tag implements TagInterface
         $this->tagName = $tagName;
     }
 
+    public function getTagName(){
+        return $this->tagName;
+    }
+
     public function addAttribute($attribute, $value){
         $this->attributes[$attribute] = $value;
     }
     public function getAttributes(){
         return $this->attributes;
-    }
-
-    public function getHtml(){
-        $htmlAttributes = array();
-        foreach($this->getAttributes() as $attribute => $value){
-            $htmlAttributes[] = sprintf('%s="%s"', $attribute, $value);
-        }
-
-        return sprintf("<%s %s />",
-            $this->tagName,
-            implode(' ', $htmlAttributes)
-        );
     }
 }

@@ -21,8 +21,6 @@ class SeoPage implements SeoPageInterface
 
     protected $linkTags = array();
 
-    protected $htmlAttributes = array();
-
     protected $translator = null;
 
     protected $translationDomain = 'messages';
@@ -156,33 +154,5 @@ class SeoPage implements SeoPageInterface
         }
 
         return $meta;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setHtmlAttributes(array $attributes)
-    {
-        $this->htmlAttributes = $attributes;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function addHtmlAttributes($name, $value)
-    {
-        $this->htmlAttributes[$name] = $value;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getHtmlAttributes()
-    {
-        return $this->htmlAttributes;
     }
 }

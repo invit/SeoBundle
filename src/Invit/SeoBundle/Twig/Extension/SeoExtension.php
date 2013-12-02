@@ -3,6 +3,7 @@
 namespace Invit\SeoBundle\Twig\Extension;
 
 use Invit\SeoBundle\Seo\SeoPage;
+use Invit\SeoBundle\Seo\Tag;
 
 class SeoExtension extends \Twig_Extension
 {
@@ -31,7 +32,6 @@ class SeoExtension extends \Twig_Extension
             'invit_seo_title'      => new \Twig_Function_Method($this, 'renderTitle'),
             'invit_seo_h1'         => new \Twig_Function_Method($this, 'renderH1'),
             'invit_seo_metadatas'  => new \Twig_Function_Method($this, 'renderMetadatas'),
-            'invit_seo_html_attributes'  => new \Twig_Function_Method($this, 'renderHtmlAttributes'),
             'invit_seo_link_tags'  => new \Twig_Function_Method($this, 'renderLinkTags')
         );
     }
@@ -69,7 +69,7 @@ class SeoExtension extends \Twig_Extension
     {
         $parts = array();
         foreach ($this->page->getMetas() as $metaTag) {
-            $parts[] = $metaTag->getHtml();
+            $parts[] = $this->getHtmlFromTag($metaTag);
         }
         return implode("\n", $parts);
     }
@@ -77,21 +77,21 @@ class SeoExtension extends \Twig_Extension
     public function renderLinkTags(){
         $linkTagsHtml = array();
         foreach($this->page->getLinkTags() as $linkTag){
-            $linkTagsHtml[] = $linkTag->getHtml();
+            $linkTagsHtml[] = $this->getHtmlFromTag($linkTag);
         }
         return implode("\n", $linkTagsHtml);
     }
 
-    /**
-     * @return string
-     */
-    public function renderHtmlAttributes()
-    {
-        $parts = array();
-        foreach ($this->page->getHtmlAttributes() as $name => $value) {
-            $parts[] = sprintf('%s="%s"', $name, $value);
+    public function getHtmlFromTag(Tag $tag){
+        $htmlAttributes = array();
+        foreach($tag->getAttributes() as $attribute => $value){
+            $htmlAttributes[] = sprintf('%s="%s"', $attribute, $this->normalize($value));
         }
-        return implode(" ", $parts);
+
+        return sprintf("<%s %s />",
+            $tag->getTagName(),
+            implode(' ', $htmlAttributes)
+        );
     }
 
     /**
