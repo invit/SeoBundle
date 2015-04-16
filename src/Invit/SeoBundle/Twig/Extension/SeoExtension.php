@@ -88,7 +88,7 @@ class SeoExtension extends \Twig_Extension
             $htmlAttributes[] = sprintf('%s="%s"', $attribute, $this->normalize($value));
         }
 
-        return sprintf("<%s %s />",
+        return sprintf("<%s %s>",
             $tag->getTagName(),
             implode(' ', $htmlAttributes)
         );
