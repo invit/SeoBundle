@@ -1,0 +1,17 @@
+services:
+    invit.seo.page:
+        class: Invit\SeoBundle\Seo\SeoPage
+        arguments: ['@translator']
+
+    invit.seo.twig.extension:
+        class: Invit\SeoBundle\Twig\Extension\SeoExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+        arguments: ['@invit.seo.page', '%invit.seo.page.encoding%']
+
+    kernel.listener.invit_seo_request_lister:
+            class: Invit\SeoBundle\EventListener\SeoControllerListener
+            arguments: ['@invit.seo.page', '%invit.seo.page.title_translatable%', '%invit.seo.page.metas_translatable%', '%invit.seo.page.metas%']
+            tags:
+                - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }

@@ -55,18 +55,3 @@ class Configuration implements ConfigurationInterface
         return $treeBuilder;
     }
 }
-/*
-
-->arrayNode('formats')
-    ->isRequired()
-    ->useAttributeAsKey('id')
-    ->prototype('array')
-        ->children()
-            ->scalarNode('width')->defaultValue(false)->end()
-            ->scalarNode('height')->defaultValue(false)->end()
-            ->scalarNode('quality')->defaultValue(80)->end()
-            ->scalarNode('format')->defaultValue('jpg')->end()
-            ->scalarNode('constraint')->defaultValue(true)->end()
-        ->end()
-    ->end()
-->end()*/

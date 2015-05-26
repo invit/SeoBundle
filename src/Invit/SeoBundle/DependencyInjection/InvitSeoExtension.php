@@ -24,22 +24,19 @@ class InvitSeoExtension extends Extension
 
         $config = $configs[0];
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.xml');
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.yml');
 
         $definition = $container->getDefinition('invit.seo.page');
 
         if(isset($config['title_main'])){
             $definition->addMethodCall('setMainTitle', array($config['title_main']));
         }
-
         $definition->addMethodCall('setTranslationDomain', array($config['translation_domain']));
-        $definition->addMethodCall('setTranslatableTitle', array($config['title']));
-
-
-        $definition->addMethodCall('setMetas', array($config['metas']));
-        $definition->addMethodCall('setTranslatableMetas', array($config['metas_translatable']));
 
         $container->setParameter('invit.seo.page.encoding', $config['encoding']);
+        $container->setParameter('invit.seo.page.metas_translatable', $config['metas_translatable']);
+        $container->setParameter('invit.seo.page.metas', $config['metas']);
+        $container->setParameter('invit.seo.page.title_translatable', $config['title']);
     }
 }
