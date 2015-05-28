@@ -21,10 +21,8 @@ class SeoControllerListener {
 
     public function onKernelController(FilterControllerEvent $event)
     {
-        if($event->isMasterRequest()) {
-            $this->seoPage->setTranslatableTitle($this->title);
-            $this->seoPage->setMetas($this->metas);
-            $this->seoPage->setTranslatableMetas($this->translatableMetas);
-        }
+        $this->seoPage->setTranslatableTitle($this->title);
+        $this->seoPage->setMetas($this->metas);
+        $this->seoPage->setTranslatableMetas($this->translatableMetas);
     }
 }
