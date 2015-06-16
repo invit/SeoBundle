@@ -147,12 +147,26 @@ class SeoPage implements SeoPageInterface
         $this->linkTags[] = $tag;
     }
 
-    public function addCanonicalTag($href)
-    {
+    public function addSimpleRelTag($href, $rel) {
         $tag = new Tag('link');
-        $tag->addAttribute('rel', 'canonical');
+        $tag->addAttribute('rel', $rel);
         $tag->addAttribute('href', $href);
         $this->linkTags[] = $tag;
+    }
+
+    public function addCanonicalTag($href)
+    {
+        $this->addSimpleRelTag($href, 'canonical');
+    }
+
+    public function addPrevTag($href)
+    {
+        $this->addSimpleRelTag($href, 'prev');
+    }
+
+    public function addNextTag($href)
+    {
+        $this->addSimpleRelTag($href, 'next');
     }
 
     private function normalize($meta)
