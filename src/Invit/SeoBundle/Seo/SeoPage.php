@@ -154,8 +154,15 @@ class SeoPage implements SeoPageInterface
         $this->linkTags[] = $tag;
     }
 
-    public function addCanonicalTag($href)
+    public function setCanonicalTag($href)
     {
+        foreach ($this->linkTags as $tag) {
+            if ($tag->getAttribute('rel') === 'canonical') {
+                $tag->setAttribute('href', $href);
+                return;
+            }
+        }
+
         $this->addSimpleRelTag($href, 'canonical');
     }
 

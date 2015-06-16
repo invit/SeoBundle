@@ -18,9 +18,18 @@ class Tag implements TagInterface
         return $this->tagName;
     }
 
-    public function addAttribute($attribute, $value){
+    public function getAttribute($attribute){
+        return $this->attributes[$attribute];
+    }
+
+    public function setAttribute($attribute, $value){
         $this->attributes[$attribute] = $value;
     }
+
+    public function addAttribute($attribute, $value){
+        $this->setAttribute($attribute, $value);
+    }
+
     public function getAttributes(){
         return $this->attributes;
     }
