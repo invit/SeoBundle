@@ -4,6 +4,7 @@ namespace Invit\SeoBundle\Twig\Extension;
 
 use Invit\SeoBundle\Seo\SeoPage;
 use Invit\SeoBundle\Seo\Tag;
+use Twig_SimpleFunction;
 
 class SeoExtension extends \Twig_Extension
 {
@@ -29,10 +30,10 @@ class SeoExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'invit_seo_title'      => new \Twig_Function_Method($this, 'renderTitle'),
-            'invit_seo_h1'         => new \Twig_Function_Method($this, 'renderH1'),
-            'invit_seo_metadatas'  => new \Twig_Function_Method($this, 'renderMetadatas'),
-            'invit_seo_link_tags'  => new \Twig_Function_Method($this, 'renderLinkTags')
+            new Twig_SimpleFunction('invit_seo_title', array($this, 'renderTitle')),
+            new Twig_SimpleFunction('invit_seo_h1', array($this, 'renderH1')),
+            new Twig_SimpleFunction('invit_seo_metadatas', array($this, 'renderMetadatas')),
+            new Twig_SimpleFunction('invit_seo_link_tags', array($this, 'renderLinkTags')),
         );
     }
 
