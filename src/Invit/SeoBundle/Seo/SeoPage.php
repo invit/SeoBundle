@@ -158,7 +158,7 @@ class SeoPage implements SeoPageInterface
     {
         foreach ($this->linkTags as $tag) {
             if ($tag->getAttribute('rel') === 'canonical') {
-                $tag->setAttribute('href', $href);
+                $tag->setAttribute('href', strtolower($href));
                 return;
             }
         }
